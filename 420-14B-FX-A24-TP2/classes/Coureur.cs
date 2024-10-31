@@ -1,5 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -8,11 +9,15 @@ namespace _420_14B_FX_A24_TP2.classes
     /// </summary>
     public class Coureur
     {
+        const byte MIN_DOSSARD = 1;
+        const byte MIN_CAR_NOM = 3;
+        const byte MIN_CAR_PRENOM = 3;
+        const byte MIN_CAR_VILLE = 4;
 
 
 
 
-       
+
         /// <summary>
         /// Numéro du dossard
         /// </summary>
@@ -73,7 +78,11 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             get { return _dossard; }
             set 
-            {                
+            {
+
+                if (value <= MIN_DOSSARD)
+                    throw new ArgumentException("Error", $"Le dossard doit etre superieur ou egal a {MIN_DOSSARD}");
+
                 _dossard = value; 
             
             }
@@ -90,6 +99,9 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _nom; }
             set 
             {
+                if (string.IsNullOrWhiteSpace(value) || value.Trim().Length <= MIN_CAR_NOM)
+                    throw new ArgumentException("Error", $"Le nom doit contenir au moin {MIN_CAR_NOM} caractere");
+
 
                 _nom = value.Trim(); 
             }
@@ -109,7 +121,8 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _prenom; }
             set 
             {
-                
+                if (string.IsNullOrWhiteSpace(value) || value.Trim().Length <= MIN_CAR_PRENOM)
+                    throw new ArgumentException("Error", $"Le prenom doit contenir au moin {MIN_CAR_PRENOM} caractere");
 
                 _prenom = value.Trim(); 
             }
@@ -126,7 +139,10 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _categorie; }
             set 
             {
-               
+               if( !Enum.IsDefined(typeof(Categorie), value))
+                    throw new ArgumentException("error", "Choisir une categorie existante");
+
+
 
                 _categorie = value; 
             }
@@ -143,7 +159,9 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set 
             {
-                
+                if (string.IsNullOrWhiteSpace(value) || value.Trim().Length <= MIN_CAR_VILLE)
+                    throw new ArgumentException("Error", $"La ville doit contenir au moin {MIN_CAR_VILLE} caractere");
+
                 _ville = value.Trim(); 
             }
         }
@@ -158,6 +176,8 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _province; }
             set 
             {
+                if(!Enum.IsDefined(typeof(Province), value))
+                    throw new ArgumentException("error", "Choisir une province existante");
 
                 _province = value; 
             }
@@ -209,14 +229,25 @@ namespace _420_14B_FX_A24_TP2.classes
      
         public Coureur(ushort dossard, string nom, string prenom, Categorie categorie, string ville, Province province, TimeSpan temps, bool abandon = false)
         {
-           
+           Dossard = dossard;
+            Nom = nom;
+            Prenom = prenom;
+            Categorie = categorie;
+            Ville = ville;
+            Province = province;
+            Temps = temps;
+            Abandon = abandon;
             
         }
 
+        public override string ToString()
+        {
+            return $"{Dossard}, {Nom}, {Prenom}, {Categorie}, {Ville}, {Province}, {Temps}, {Abandon}";
+        }
 
-      
- 
-      
+
+
+
 
     }
 }
