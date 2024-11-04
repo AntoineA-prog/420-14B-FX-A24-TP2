@@ -8,8 +8,11 @@ namespace _420_14B_FX_A24_TP2.classes
     /// </summary>
     public class Course
     {
-  
-       
+
+        const int CARACT_MIN_NOM = 3;
+        const int CARAC_MIN_NOM_VILLE = 4;
+        const int DISTANCE_MIN = 1;
+
 
 
         /// <summary>
@@ -85,8 +88,13 @@ namespace _420_14B_FX_A24_TP2.classes
 
             set 
             {
-                if (value != isNullOrWhiteSpace)
-                _nom = value.Trim().ToUpper(); 
+                if (string.IsNullOrEmpty(value) || value.Length >= CARACT_MIN_NOM)
+                {
+                    _nom = value.Trim().ToUpper();
+                }
+                else
+                    throw new ArgumentException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
+
             }
         }
 
@@ -113,9 +121,16 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set 
             {
-             
+                if (string.IsNullOrEmpty(value) || value.Length >= CARAC_MIN_NOM_VILLE)
+                {
+                    _nom = value.Trim();
+                }
+                else
+                {
+                    throw new ArgumentException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
+                }
 
-                _ville = value.Trim(); 
+                
             }
         }
 
@@ -132,7 +147,8 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _province; }
             set 
             {
-
+                if (!Enum.IsDefined(typeof(Province), value))
+                    throw new ArgumentException("ERREUR", "La province ne se retrouve pas dans la liste");        
                 _province = value; 
             }
         }
@@ -148,7 +164,8 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _typeCourse; }
             set 
             {
-             
+                if (!Enum.IsDefined(typeof(Province), value))
+                    throw new ArgumentException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
                 _typeCourse = value; 
             }
         }
@@ -163,8 +180,10 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _distance; }
             set 
             {
-               
-                _distance = value; 
+                if (value > DISTANCE_MIN)
+                    _distance = value; 
+                else
+                    throw new ArgumentException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
             }
         }
 
@@ -220,8 +239,57 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <remarks>Initialise une liste de coureurs vide</remarks>
         public Course(Guid id, string nom, DateOnly date, string ville, Province province, TypeCourse typeCourse, ushort distance )
         {
-
+            Id = id;
+            Nom = nom;
+            Date = date;
+            Ville = ville;
+            Province = province;
+            TypeCourse = typeCourse;
+            Distance = distance;
+            Coureurs = new List<Coureur>();
            
+        }
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// Permet la représentation des données sous forme string
+        /// </summary>
+        public override string ToString()
+        {
+            return $"{Id}, {Nom}, {Date}, {Ville}, {Province}, {TypeCourse}, {Distance}";
+        }
+
+        /// 
+        public void AjouterCoureur(Coureur coureur)
+        {
+
+            if (IsNullOrEmpty(Coureur))
+            {
+                //À changer
+                throw new NotImplementedException();
+            }  
+            else if (Coureurs.Contains(coureur.Dossard))
+            {
+                //À changer
+                throw new NotImplementedException();
+            }
+            else if (Coureurs.Contains(coureur))
+            {
+                //À changer
+                throw new NotImplementedException();
+            }
+            else
+                Coureurs.Add(coureur);
+            //Switch?
+            Coureurs.Sort();
+            //good sort?
         }
 
       
