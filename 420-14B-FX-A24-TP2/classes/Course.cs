@@ -258,19 +258,13 @@ namespace _420_14B_FX_A24_TP2.classes
 
 
 
-        /// <summary>
-        /// Permet la représentation des données sous forme string
-        /// </summary>
-        public override string ToString()
-        {
-            return $"{Id}, {Nom}, {Date}, {Ville}, {Province}, {TypeCourse}, {Distance}";
-        }
+       
 
         /// 
         public void AjouterCoureur(Coureur coureur)
         {
 
-            if (IsNullOrEmpty(Coureur))
+            if (coureur == null)
             {
                 //À changer
                 throw new NotImplementedException();
@@ -292,9 +286,44 @@ namespace _420_14B_FX_A24_TP2.classes
             //good sort?
         }
 
-      
 
+        public override bool Equals(object? obj)
+        {
 
+        }
 
+        public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
+        {
+
+        }
+
+        private TimeSpan CalculerTempsCourseMoyen()
+        {
+
+        }
+        public void SupprimerCoureur(Coureur coureur)
+        {
+
+        }
+
+        public void TrierCoureurs()
+        {
+
+        }
+        /// <summary>
+        /// Permet la représentation des données sous forme string
+        /// </summary>
+        public override string ToString()
+        {
+            return $"{Id}, {Nom}, {Date}, {Ville}, {Province}, {TypeCourse}, {Distance}";
+        }
+        public static bool operator ==(Course courseGauche, Course courseDroite)
+        {
+            return 0;
+        }
+        public static bool operator !=(Course courseGauche, Course courseDroite)
+        {
+            return 0;
+        }
     }
 }
