@@ -1,6 +1,9 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
+using System.Globalization;
+using System.Windows.Controls;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -261,27 +264,30 @@ namespace _420_14B_FX_A24_TP2.classes
 
        
 
-        /// 
+        /// <summary>
+        /// Permet l'ajout d'un coureur à la liste des coureurs
+        /// </summary>
+        /// <param name="coureur"></param>
+        /// <exception cref="NotImplementedException"></exception>
         public void AjouterCoureur(Coureur coureur)
         {
             
-            if (coureur == null)
+            if (ObtenirCoureurParNoDossard == null)
             {
                 //À changer
-                throw new NotImplementedException();
-            }  
-            else if (coureur.Dossard)
-            {
-                //À changer
-                throw new NotImplementedException();
-            }
-            else if (Coureurs.Contains(coureur))
-            {
-                //À changer
-                throw new NotImplementedException();
-            }
-            else
                 Coureurs.Add(coureur);
+            }  
+
+            //Vérification ; le coureur reçu ne peut pas être nul
+            else if (coureur == null)
+            {
+                //À changer
+                throw new NotImplementedException();
+            }
+            
+
+
+
             //Switch?
             Coureurs.Sort();
             //good sort?
@@ -302,30 +308,29 @@ namespace _420_14B_FX_A24_TP2.classes
 
         public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
         {
-            bool valid = false;
-            int i = 0;
-            while (i < Coureurs.Count || valid)
+            foreach (Coureur coureur in Coureurs)
             {
-                //If redondant?
-                if (Coureurs[i].Dossard != noDossard)
+
+                //redondant
+                if (coureur.Dossard != noDossard)
                 {
                     return null;
-                    valid = true;
+
                 }
-                else if (Coureurs[i].Dossard == noDossard)
+                //ok
+                else if (coureur.Dossard == noDossard)
                 {
-                    return Coureurs[i];
-                    valid= true;
+                    return coureur;
+
                 }
-                else if (Coureurs[i].Dossard > 1)
+                //ok
+                else if (coureur.Dossard > 1)
                 {
                     throw new NotImplementedException();
                 }
-                i++;
             }
 
             return null;
-
             //À implémenter dans la fonction AjouterCoureur.
         }
 
