@@ -1,5 +1,7 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System;
+using System.Globalization;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace _420_14B_FX_A24_TP2.classes
@@ -9,10 +11,10 @@ namespace _420_14B_FX_A24_TP2.classes
     /// </summary>
     public class Coureur
     {
-        const byte MIN_DOSSARD = 1;
-        const byte MIN_CAR_NOM = 3;
-        const byte MIN_CAR_PRENOM = 3;
-        const byte MIN_CAR_VILLE = 4;
+        public const byte DOSSARD_VAL_MIN = 1;
+        public const byte NOM_NB_CARC_MIN = 3;
+        public const byte PRENOM_NB_CARC_MIN = 3;
+        public const byte VILLE_NB_CARC_MIN = 4;
 
 
 
@@ -80,8 +82,8 @@ namespace _420_14B_FX_A24_TP2.classes
             set 
             {
 
-                if (value <= MIN_DOSSARD)
-                    throw new ArgumentException("Error", $"Le dossard doit etre superieur ou egal a {MIN_DOSSARD}");
+                if (value < DOSSARD_VAL_MIN)
+                    throw new ArgumentOutOfRangeException("Error", $"Le dossard doit etre superieur ou egal a {DOSSARD_VAL_MIN}");
 
                 _dossard = value; 
             
@@ -99,9 +101,11 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _nom; }
             set 
             {
-                if (string.IsNullOrWhiteSpace(value) || value.Trim().Length <= MIN_CAR_NOM)
-                    throw new ArgumentException("Error", $"Le nom doit contenir au moin {MIN_CAR_NOM} caractere");
+                if (string.IsNullOrWhiteSpace(value) )
+                    throw new ArgumentNullException("Error", $"Le nom doit contenir au moin {NOM_NB_CARC_MIN} caractere et ne doit pas etre nulle.");
 
+                if (value.Trim().Length < NOM_NB_CARC_MIN)
+                    throw new ArgumentOutOfRangeException("Error", $"Le nom doit contenir au moin {NOM_NB_CARC_MIN} caractere");
 
                 _nom = value.Trim(); 
             }
@@ -121,8 +125,11 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _prenom; }
             set 
             {
-                if (string.IsNullOrWhiteSpace(value) || value.Trim().Length <= MIN_CAR_PRENOM)
-                    throw new ArgumentException("Error", $"Le prenom doit contenir au moin {MIN_CAR_PRENOM} caractere");
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException("Error", $"Le nom doit contenir au moin {PRENOM_NB_CARC_MIN} caractere et ne doit pas etre nulle.");
+
+                if (value.Trim().Length < PRENOM_NB_CARC_MIN)
+                    throw new ArgumentOutOfRangeException("Error", $"Le nom doit contenir au moin {PRENOM_NB_CARC_MIN} caractere");
 
                 _prenom = value.Trim(); 
             }
@@ -140,7 +147,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set 
             {
                if( !Enum.IsDefined(typeof(Categorie), value))
-                    throw new ArgumentException("error", "Choisir une categorie existante");
+                    throw new ArgumentOutOfRangeException("error", "Choisir une categorie existante");
 
 
 
@@ -159,8 +166,13 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _ville; }
             set 
             {
-                if (string.IsNullOrWhiteSpace(value) || value.Trim().Length <= MIN_CAR_VILLE)
-                    throw new ArgumentException("Error", $"La ville doit contenir au moin {MIN_CAR_VILLE} caractere");
+
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException("Error", $"Le nom doit contenir au moin {VILLE_NB_CARC_MIN} caractere et ne doit pas etre nulle.");
+
+                if (value.Trim().Length < VILLE_NB_CARC_MIN)
+                    throw new ArgumentOutOfRangeException("Error", $"Le nom doit contenir au moin {VILLE_NB_CARC_MIN} caractere");
+
 
                 _ville = value.Trim(); 
             }
@@ -177,7 +189,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set 
             {
                 if(!Enum.IsDefined(typeof(Province), value))
-                    throw new ArgumentException("error", "Choisir une province existante");
+                    throw new ArgumentOutOfRangeException("error", "Choisir une province existante");
 
                 _province = value; 
             }
@@ -244,6 +256,17 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             return $"{Dossard}, {Nom}, {Prenom}, {Categorie}, {Ville}, {Province}, {Temps}, {Abandon}";
         }
+
+        //public int CompareTo(Coureur other)
+        //{
+        //    //Si l'objet comparer est null alors celui-ci vient avant l'objet courant.
+        //    if (other is null)
+        //        return 1;
+
+
+
+
+        //}
 
 
 

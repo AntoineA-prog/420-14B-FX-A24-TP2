@@ -270,26 +270,26 @@ namespace _420_14B_FX_A24_TP2.classes
         public void AjouterCoureur(Coureur coureur)
         {
 
-            if (IsNullOrEmpty(Coureur))
-            {
-                //À changer
-                throw new NotImplementedException();
-            }  
-            else if (Coureurs.Contains(coureur.Dossard))
-            {
-                //À changer
-                throw new NotImplementedException();
-            }
-            else if (Coureurs.Contains(coureur))
-            {
-                //À changer
-                throw new NotImplementedException();
-            }
-            else
-                Coureurs.Add(coureur);
-            //Switch?
-            Coureurs.Sort();
-            //good sort?
+            //if (string.IsNullOrEmpty(Coureur))
+            //{
+            //    //À changer
+            //    throw new NotImplementedException();
+            //}  
+            //else if (Coureurs.Contains(coureur.Dossard))
+            //{
+            //    //À changer
+            //    throw new NotImplementedException();
+            //}
+            //else if (Coureurs.Contains(coureur))
+            //{
+            //    //À changer
+            //    throw new NotImplementedException();
+            //}
+            //else
+            //    Coureurs.Add(coureur);
+            ////Switch?
+            //Coureurs.Sort();
+            ////good sort?
         }
 
       
