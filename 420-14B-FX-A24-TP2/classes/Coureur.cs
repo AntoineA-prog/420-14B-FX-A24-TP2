@@ -2,6 +2,7 @@
 using _420_14B_FX_A24_TP2.enums;
 using System;
 using System.Globalization;
+using System.Windows.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace _420_14B_FX_A24_TP2.classes
@@ -257,17 +258,34 @@ namespace _420_14B_FX_A24_TP2.classes
             return $"{Dossard}, {Nom}, {Prenom}, {Categorie}, {Ville}, {Province}, {Temps}, {Abandon}";
         }
 
-        //public int CompareTo(Coureur other)
-        //{
-        //    //Si l'objet comparer est null alors celui-ci vient avant l'objet courant.
-        //    if (other is null)
-        //        return 1;
+        /// <summary>
+        /// Permet de trier les coureurs selon leur temps de course.
+        /// </summary>
+        /// <param name="other">Other est le coureur comparer</param>
+        /// <returns>Ceci retorune -1 0 ou 1 pour permettre le tri</returns>
+        public int CompareTo(Coureur other)
+        {
+            
+            if (other is null)
+                return 1;
+
+
+            int comTemps = Temps.CompareTo(other.Temps);
+            return comTemps;
 
 
 
+        }
 
-        //}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object? obj)
+        {
+            if()
+        }
 
 
 
