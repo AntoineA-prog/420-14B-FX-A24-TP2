@@ -1,5 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -263,13 +264,13 @@ namespace _420_14B_FX_A24_TP2.classes
         /// 
         public void AjouterCoureur(Coureur coureur)
         {
-
+            
             if (coureur == null)
             {
                 //À changer
                 throw new NotImplementedException();
             }  
-            else if (Coureurs.Contains(coureur.Dossard))
+            else if (coureur.Dossard)
             {
                 //À changer
                 throw new NotImplementedException();
@@ -292,9 +293,40 @@ namespace _420_14B_FX_A24_TP2.classes
 
         }
 
+        /// <summary>
+        ///  Permet d'obtenir un coureur à partir de son numéro de dossard.Si aucun coureur ne porte le numéro de dossard
+        /// recherché, alors la valeur nulle est retournée sinon le coureur trouvé est retourné.
+        /// </summary>
+        /// <param name="noDossard"></param>
+        /// <returns></returns>
+
         public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
         {
+            bool valid = false;
+            int i = 0;
+            while (i < Coureurs.Count || valid)
+            {
+                //If redondant?
+                if (Coureurs[i].Dossard != noDossard)
+                {
+                    return null;
+                    valid = true;
+                }
+                else if (Coureurs[i].Dossard == noDossard)
+                {
+                    return Coureurs[i];
+                    valid= true;
+                }
+                else if (Coureurs[i].Dossard > 1)
+                {
+                    throw new NotImplementedException();
+                }
+                i++;
+            }
 
+            return null;
+
+            //À implémenter dans la fonction AjouterCoureur.
         }
 
         private TimeSpan CalculerTempsCourseMoyen()
