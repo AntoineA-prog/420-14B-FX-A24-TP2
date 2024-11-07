@@ -253,6 +253,10 @@ namespace _420_14B_FX_A24_TP2.classes
             
         }
 
+        /// <summary>
+        /// Transform en chan de caratere toute les variables
+        /// </summary>
+        /// <returns>Une chaine de caractere contenant les variables</returns>
         public override string ToString()
         {
             return $"{Dossard}, {Nom}, {Prenom}, {Categorie}, {Ville}, {Province}, {Temps}, {Abandon}";
@@ -277,14 +281,53 @@ namespace _420_14B_FX_A24_TP2.classes
 
         }
 
+
         /// <summary>
-        /// 
+        /// Permet de comparer deux coureurs. Deux coureurs sont identiques s’ils ont le même nom, prénom, ville et province.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">obj est l'a variable comparer</param>
+        /// <returns>Retourne si l'objet est egale (true) our non(false)</returns>
         public override bool Equals(object? obj)
         {
-            if()
+            if (obj is null || obj is not Coureur) return false;
+
+
+            return this == (Coureur)obj;
+        }  
+
+
+        /// <summary>
+        /// Permet de comparer deux coureurs
+        /// </summary>
+        /// <param name="coureurGauche">Coureur a comparer 1</param>
+        /// <param name="coureurDroit">Coureur a comparer 2</param>
+        /// <returns>Retourn si les deux coureurs sont identique(true) ou non(false)</returns>
+        public static bool operator ==(Coureur coureurGauche, Coureur coureurDroit)
+        {
+            if (object.ReferenceEquals(coureurGauche, coureurDroit))
+                return true;
+
+            if ((Object)coureurGauche == null || (Object)coureurDroit == null)
+                return false;
+
+            if (coureurGauche.Equals(coureurDroit))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Permet de comparer deux coureurs.
+        /// </summary>
+        /// <param name="coureurGauche">Coureur a comparer 1</param>
+        /// <param name="coureurDroit">coureur a comparer 2</param>
+        /// <returns>Retourn si les deux coureurs sont identique(false) ou non(true)</returns>
+        public static bool operator !=(Coureur coureurGauche, Coureur coureurDroit)
+        {
+            return !(coureurGauche == coureurDroit);
+
         }
 
 
