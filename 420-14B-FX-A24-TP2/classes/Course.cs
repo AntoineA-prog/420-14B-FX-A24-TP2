@@ -278,24 +278,33 @@ namespace _420_14B_FX_A24_TP2.classes
                 //À changer
                 throw new NotImplementedException();
             }
-            else if ()
-
-            //Vérification ; Si le dossard est null et assumant que le coureur reçu n'est pas null
-            if (ObtenirCoureurParNoDossard == null)
+            else if(ObtenirCoureurParNoDossard(coureur.Dossard) == coureur.Dossard)
             {
-                //À changer
+                throw new NotImplementedException();
+            }
+            
+            //Vérification ; Si le dossard est null et assumant que le coureur reçu n'est pas null
+            if(ObtenirCoureurParNoDossard(coureur.Dossard) == null)
+            {
+                foreach (Coureur coureur in Coureurs)
+                {
+                    if (coureur == Coureurs[i])
+                    {
+                        throw new NotImplementedException();
+
+                    }
+                }
                 Coureurs.Add(coureur);
-            }  
+                //À changer
+
+            }        
             //Switch?
             Coureurs.Sort();
             //good sort?
         }
 
 
-        public override bool Equals(object? obj)
-        {
-
-        }
+       
 
         /// <summary>
         ///  Permet d'obtenir un coureur à partir de son numéro de dossard.Si aucun coureur ne porte le numéro de dossard
@@ -322,6 +331,11 @@ namespace _420_14B_FX_A24_TP2.classes
             //À implémenter dans la fonction AjouterCoureur.
         }
 
+        public override bool Equals(object? obj)
+        {
+
+        }
+
         private TimeSpan CalculerTempsCourseMoyen()
         {
 
@@ -335,20 +349,22 @@ namespace _420_14B_FX_A24_TP2.classes
         {
 
         }
+        
+        public static bool operator ==(Course courseGauche, Course courseDroite)
+        {
+            
+        }
+        public static bool operator !=(Course courseGauche, Course courseDroite)
+        {
+            
+        }
+
         /// <summary>
         /// Permet la représentation des données sous forme string
         /// </summary>
         public override string ToString()
         {
             return $"{Id}, {Nom}, {Date}, {Ville}, {Province}, {TypeCourse}, {Distance}";
-        }
-        public static bool operator ==(Course courseGauche, Course courseDroite)
-        {
-            return 0;
-        }
-        public static bool operator !=(Course courseGauche, Course courseDroite)
-        {
-            return 0;
         }
     }
 }
