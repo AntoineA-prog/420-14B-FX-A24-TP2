@@ -336,7 +336,20 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         private TimeSpan CalculerTempsCourseMoyen()
         {
+            
 
+            foreach (Coureur coureur in Coureurs)
+            {
+
+                TempCourseMoyen = 0;
+                //ok
+                if !(coureur.Abandon)
+                {
+                    TempCourseMoyen += TempCourseMoyen.Add(coureur.Temps);
+
+                }
+
+            }
         }
         /// <summary>
         ///Permet de retirer un coureur de la liste de coureurs
