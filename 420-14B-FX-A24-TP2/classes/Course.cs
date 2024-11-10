@@ -271,17 +271,19 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <exception cref="NotImplementedException"></exception>
         public void AjouterCoureur(Coureur coureur)
         {
-
             //Vérification ; le coureur reçu dans la fonction actuelle ne peut pas être null
             if (coureur == null)
             {
                 //À changer
                 throw new NotImplementedException();
             }
-            else if ()
+            else if (coureur.Dossard == ObtenirCoureurParNoDossard)
+            {
+                throw new NotImplementedException();
+            } 
 
             //Vérification ; Si le dossard est null et assumant que le coureur reçu n'est pas null
-            if (ObtenirCoureurParNoDossard == null)
+            else if (ObtenirCoureurParNoDossard == null)
             {
                 //À changer
                 Coureurs.Add(coureur);
@@ -310,12 +312,16 @@ namespace _420_14B_FX_A24_TP2.classes
             {
 
                //ok
-                if (coureur.Dossard == noDossard)
+                 if (coureur.Dossard == noDossard)
                 {
                     return coureur;
 
                 }
-                
+                //ok
+                else if (coureur.Dossard > 1)
+                {
+                    throw new NotImplementedException();
+                }
             }
 
             return null;
