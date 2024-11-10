@@ -277,27 +277,33 @@ namespace _420_14B_FX_A24_TP2.classes
                 //À changer
                 throw new NotImplementedException();
             }
-            else if (coureur.Dossard == ObtenirCoureurParNoDossard)
+            else if(ObtenirCoureurParNoDossard(coureur.Dossard) == coureur.Dossard)
             {
                 throw new NotImplementedException();
-            } 
-
+            }
+            
             //Vérification ; Si le dossard est null et assumant que le coureur reçu n'est pas null
-            else if (ObtenirCoureurParNoDossard == null)
+            if(ObtenirCoureurParNoDossard(coureur.Dossard) == null)
             {
-                //À changer
+                foreach (Coureur coureur in Coureurs)
+                {
+                    if (coureur == Coureurs[i])
+                    {
+                        throw new NotImplementedException();
+
+                    }
+                }
                 Coureurs.Add(coureur);
-            }  
+                //À changer
+
+            }
             //Switch?
-            Coureurs.Sort();
+            TrierCoureurs();
             //good sort?
         }
 
 
-        public override bool Equals(object? obj)
-        {
-
-        }
+       
 
         /// <summary>
         ///  Permet d'obtenir un coureur à partir de son numéro de dossard.Si aucun coureur ne porte le numéro de dossard
@@ -328,33 +334,103 @@ namespace _420_14B_FX_A24_TP2.classes
             //À implémenter dans la fonction AjouterCoureur.
         }
 
+        /// <summary>
+        /// Permet de calculer le temps moyen de la course.Les coureurs ayant abandonné la course sont exclus du calcul
+        /// </summary>
         private TimeSpan CalculerTempsCourseMoyen()
         {
+            
 
+            foreach (Coureur coureur in Coureurs)
+            {
+
+                TempCourseMoyen = 0;
+                //ok
+                if !(coureur.Abandon)
+                {
+                    TempCourseMoyen += TempCourseMoyen.Add(coureur.Temps);
+
+                }
+
+            }
         }
+        /// <summary>
+        ///Permet de retirer un coureur de la liste de coureurs
+        /// </summary>
+        /// <param name="coureur"></param>
         public void SupprimerCoureur(Coureur coureur)
         {
+            foreach (Coureur coureur in Coureurs)
+            {
 
+                //ok
+                if (coureur == Coureurs.[i])
+                {
+                    Coureurs.RemoveAt(i);
+
+                }
+
+            }
         }
-
+        /// <summary>
+        /// Permet de trier la liste des coureurs selon le temps de course en ajustant le rang des coureurs.
+        /// </summary>
         public void TrierCoureurs()
         {
-
+            Coureurs.Sort();
         }
+
+        /// <summary>
+        /// Permet de comparer deux courses
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || obj is not Course) return false;
+
+
+            return this == (Course)obj;
+        }
+
+        /// <summary>
+        ///^Permet de comparer deux courses
+        /// </summary>
+        /// <param name="courseGauche"></param>
+        /// <param name="courseDroite"></param>
+        /// <returns></returns>
+        public static bool operator ==(Course courseGauche, Course courseDroite)
+        {
+            if (object.ReferenceEquals courseGauche, courseDroite))
+                return true;
+
+            if (courseGauche == null || courseDroite == null)
+                return false;
+
+            if (courseGauche.Equals(courseDroite))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        /// <summary>
+        /// Permet de comparer deux courses
+        /// </summary>
+        /// <param name="courseGauche"></param>
+        /// <param name="courseDroite"></param>
+        /// <returns></returns>
+        public static bool operator !=(Course courseGauche, Course courseDroite)
+        {
+            return (courseGauche != courseDroite);
+        }
+
         /// <summary>
         /// Permet la représentation des données sous forme string
         /// </summary>
         public override string ToString()
         {
             return $"{Id}, {Nom}, {Date}, {Ville}, {Province}, {TypeCourse}, {Distance}";
-        }
-        public static bool operator ==(Course courseGauche, Course courseDroite)
-        {
-            return 0;
-        }
-        public static bool operator !=(Course courseGauche, Course courseDroite)
-        {
-            return 0;
         }
     }
 }
