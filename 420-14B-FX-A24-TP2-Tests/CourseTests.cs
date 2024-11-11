@@ -29,7 +29,7 @@ namespace _420_14B_FX_TP2_Test
             DateOnly date = DateOnly.FromDateTime(DateTime.Now.Date);
 
 
-            return new Course(Guid.NewGuid(),nom, date, ville, province, type, distance);
+            return new  Course(Guid.NewGuid(),nom, date, ville, province, type, distance);
         }
 
         #region Id
