@@ -2,8 +2,7 @@
 using _420_14B_FX_A24_TP2.enums;
 using System;
 using System.Globalization;
-using System.Windows.Controls;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -13,16 +12,16 @@ namespace _420_14B_FX_A24_TP2.classes
     public class Course
     {
 
-        const int CARACT_MIN_NOM = 3;
-        const int CARAC_MIN_NOM_VILLE = 4;
-        const int DISTANCE_MIN = 1;
+        public const int NOM_NB_CAR_MIN = 3;
+        public const int VILLE_NB_CAR_MIN = 4;
+        public const int DISTANCE_VAL_MIN = 1;
 
 
 
         /// <summary>
         /// Identifiant unique de la course
         /// </summary>
-        private Guid _id;
+        private static Guid _id = Guid.NewGuid(); 
 
 
         /// <summary>
@@ -72,8 +71,6 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             get { return _id; }
             set {
-                    
-               
                 _id = value; 
             }
         }
@@ -84,7 +81,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         /// <value>Obtien ou modifie la valeur de l'attribut :  _nom.</value>
         /// <exception cref="System.ArgumentNullException">Lancée lorsque que le nom est nul ou n'a aucune valeur.</exception>
-        /// <exception cref="System.ArgumentException">Lancé lors que le nom a moins de NOM_NB_CAR_MIN caractères.</exception>
+        /// <exception cref="System.ArgumentNullException">Lancé lors que le nom a moins de NOM_NB_CAR_MIN caractères.</exception>
 
         public string Nom
         {
@@ -92,12 +89,12 @@ namespace _420_14B_FX_A24_TP2.classes
 
             set 
             {
-                if (string.IsNullOrEmpty(value) || value.Length >= CARACT_MIN_NOM)
+                if (string.IsNullOrEmpty(value) || value.Length >= NOM_NB_CAR_MIN)
                 {
                     _nom = value.Trim().ToUpper();
                 }
                 else
-                    throw new ArgumentException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
+                    throw new ArgumentNullException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
 
             }
         }
@@ -119,19 +116,19 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         /// <value>Obtien ou modifie la valeur de l'attribut :  _ville.</value>
         /// <exception cref="System.ArgumentNullException">Lancée lorsque que la ville est nulle ou n'a aucune valeur.</exception>
-        /// <exception cref="System.ArgumentException">Lancé lors que la ville a moins de VILLE_NB_CAR_MIN caractères.</exception>
+        /// <exception cref="System.ArgumentNullException">Lancé lors que la ville a moins de VILLE_NB_CAR_MIN caractères.</exception>
         public string Ville
         {
             get { return _ville; }
             set 
             {
-                if (string.IsNullOrEmpty(value) || value.Length >= CARAC_MIN_NOM_VILLE)
+                if (string.IsNullOrEmpty(value) || value.Length >= VILLE_NB_CAR_MIN)
                 {
                     _nom = value.Trim();
                 }
                 else
                 {
-                    throw new ArgumentException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
+                    throw new ArgumentNullException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
                 }
 
                 
@@ -152,7 +149,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set 
             {
                 if (!Enum.IsDefined(typeof(Province), value))
-                    throw new ArgumentException("ERREUR", "La province ne se retrouve pas dans la liste");        
+                    throw new ArgumentOutOfRangeException("ERREUR", "La province ne se retrouve pas dans la liste");        
                 _province = value; 
             }
         }
@@ -169,7 +166,7 @@ namespace _420_14B_FX_A24_TP2.classes
             set 
             {
                 if (!Enum.IsDefined(typeof(Province), value))
-                    throw new ArgumentException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
+                    throw new ArgumentOutOfRangeException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
                 _typeCourse = value; 
             }
         }
@@ -184,10 +181,10 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _distance; }
             set 
             {
-                if (value > DISTANCE_MIN)
+                if (value > DISTANCE_VAL_MIN)
                     _distance = value; 
                 else
-                    throw new ArgumentException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
+                    throw new ArgumentOutOfRangeException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
             }
         }
 
@@ -205,7 +202,7 @@ namespace _420_14B_FX_A24_TP2.classes
      
 
         /// <summary>
-        ///Obtien le nombre de coureurs participants à la course
+        ///Obtient le nombre de coureurs participant à la course
         /// </summary>
         /// <value>Obtien la valeur de l'attribut :  _coureurs.Count.</value>
         public int NbParticipants
@@ -254,6 +251,7 @@ namespace _420_14B_FX_A24_TP2.classes
            
         }
 
+
        
 
         /// <summary>
@@ -269,21 +267,23 @@ namespace _420_14B_FX_A24_TP2.classes
                 //À changer
                 throw new NotImplementedException();
             }
-            else if(ObtenirCoureurParNoDossard(coureur.Dossard) == coureur.Dossard)
+            else if(ObtenirCoureurParNoDossard(coureur.Dossard) == coureur)
             {
                 throw new NotImplementedException();
             }
             
             //Vérification ; Si le dossard est null et assumant que le coureur reçu n'est pas null
-            if(ObtenirCoureurParNoDossard(coureur.Dossard) == null)
+            if (ObtenirCoureurParNoDossard(coureur.Dossard) == null)
             {
-                foreach (Coureur coureur in Coureurs)
+                int i = 0;
+                foreach (Coureur coureurChoisi in Coureurs)
                 {
-                    if (coureur == Coureurs[i])
+                    if (coureurChoisi == Coureurs[i])
                     {
                         throw new NotImplementedException();
 
                     }
+                    i++;
                 }
                 Coureurs.Add(coureur);
                 //À changer
@@ -336,15 +336,16 @@ namespace _420_14B_FX_A24_TP2.classes
             foreach (Coureur coureur in Coureurs)
             {
 
-                TempCourseMoyen = 0;
+                TimeOnly TempCourseMoyen = new TimeOnly(0);
                 //ok
-                if !(coureur.Abandon)
+                if (!coureur.Abandon)
                 {
-                    TempCourseMoyen += TempCourseMoyen.Add(coureur.Temps);
+                    TempCourseMoyen = TempCourseMoyen.Add(coureur.Temps);
 
                 }
-
+               
             }
+            return TempCourseMoyen;
         }
         /// <summary>
         ///Permet de retirer un coureur de la liste de coureurs
@@ -352,18 +353,18 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="coureur"></param>
         public void SupprimerCoureur(Coureur coureur)
         {
-            foreach (Coureur coureur in Coureurs)
+            int i = 0;
+            foreach (Coureur coureurChoisi in Coureurs)
             {
-
-                //ok
-                if (coureur == Coureurs.[i])
+                if (coureurChoisi == Coureurs[i])
                 {
                     Coureurs.RemoveAt(i);
 
                 }
-
+                i++;
             }
         }
+        
         /// <summary>
         /// Permet de trier la liste des coureurs selon le temps de course en ajustant le rang des coureurs.
         /// </summary>
@@ -393,7 +394,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns></returns>
         public static bool operator ==(Course courseGauche, Course courseDroite)
         {
-            if (object.ReferenceEquals courseGauche, courseDroite))
+            if (object.ReferenceEquals(courseGauche, courseDroite))
                 return true;
 
             if (courseGauche == null || courseDroite == null)

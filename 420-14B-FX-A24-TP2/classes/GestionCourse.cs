@@ -68,10 +68,10 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         /// <param name="course"></param>
         /// <returns></returns>
-        public bool SupprimerCourse(Course course)
-        {
+        //public bool SupprimerCourse(Course course)
+        //{
 
-        }
+        //}
 
         /// <summary>
         /// 
