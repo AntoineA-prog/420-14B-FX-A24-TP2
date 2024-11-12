@@ -94,7 +94,7 @@ namespace _420_14B_FX_A24_TP2.classes
                     _nom = value.Trim().ToUpper();
                 }
                 else
-                    throw new ArgumentNullException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
+                    throw new ArgumentNullException("ERREUR", $"Le nom est soit vide soit ne respecte pas le nombre de caractères minimum ({NOM_NB_CAR_MIN})");
 
             }
         }
@@ -124,11 +124,11 @@ namespace _420_14B_FX_A24_TP2.classes
             {
                 if (string.IsNullOrEmpty(value) || value.Length >= VILLE_NB_CAR_MIN)
                 {
-                    _nom = value.Trim();
+                    _ville = value.Trim();
                 }
                 else
                 {
-                    throw new ArgumentNullException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
+                    throw new ArgumentNullException("ERREUR", $"Le nom entré est soit vide soit ne respecte pas le nombre de caractères minimum ({VILLE_NB_CAR_MIN})");
                 }
 
                 
@@ -165,7 +165,7 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _typeCourse; }
             set 
             {
-                if (!Enum.IsDefined(typeof(Province), value))
+                if (!Enum.IsDefined(typeof(TypeCourse), value))
                     throw new ArgumentOutOfRangeException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
                 _typeCourse = value; 
             }
@@ -252,74 +252,66 @@ namespace _420_14B_FX_A24_TP2.classes
         }
 
 
-       
+
 
         /// <summary>
         /// Permet l'ajout d'un coureur à la liste des coureurs
         /// </summary>
         /// <param name="coureur"></param>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <exception cref="InvalidOperationException">ne référence nulle est rentré pour l'objet coureur</exception>
         public void AjouterCoureur(Coureur coureur)
         {
             //Vérification ; le coureur reçu dans la fonction actuelle ne peut pas être null
             if (coureur == null)
             {
-                //À changer
-                throw new NotImplementedException();
+               
+                throw new ArgumentNullException("Error", "Aucun coureur n'a été rentré");
             }
-            else if(ObtenirCoureurParNoDossard(coureur.Dossard) == coureur)
+            else if(ObtenirCoureurParNoDossard(coureur.Dossard) != null)
             {
-                throw new NotImplementedException();
+                throw new InvalidOperationException(); 
             }
             
             //Vérification ; Si le dossard est null et assumant que le coureur reçu n'est pas null
-            if (ObtenirCoureurParNoDossard(coureur.Dossard) == null)
-            {
-                int i = 0;
-                foreach (Coureur coureurChoisi in Coureurs)
-                {
-                    if (coureurChoisi == Coureurs[i])
-                    {
-                        throw new NotImplementedException();
-
-                    }
-                    i++;
-                }
+            else
                 Coureurs.Add(coureur);
                 //À changer
 
-            }
+            
             //Switch?
             TrierCoureurs();
             //good sort?
         }
 
 
-       
+
 
         /// <summary>
-        ///  Permet d'obtenir un coureur à partir de son numéro de dossard.Si aucun coureur ne porte le numéro de dossard
+        /// Permet d'obtenir un coureur à partir de son numéro de dossard.Si aucun coureur ne porte le numéro de dossard
         /// recherché, alors la valeur nulle est retournée sinon le coureur trouvé est retourné.
         /// </summary>
         /// <param name="noDossard"></param>
-        /// <returns></returns>
+        /// <returns>Retourne coureur, null autrement</returns>
+        /// <exception cref="ArgumentException">Se lance si le numéro de dossard est inférieur à 1</exception>
 
         public Coureur ObtenirCoureurParNoDossard(ushort noDossard)
         {
+
+             //ok
+            if (noDossard < 1)
+            {
+                throw new ArgumentException("Erreur", "Le numéro de dossard est inférieur à 1");
+            }
+
             foreach (Coureur coureur in Coureurs)
             {
 
                //ok
                  if (coureur.Dossard == noDossard)
-                {
+                 {
                     return coureur;
-
-                }
-                //ok
-                else if (coureur.Dossard > 1)
-                {
-                    throw new NotImplementedException();
-                }
+                 }
+               
             }
 
             return null;
