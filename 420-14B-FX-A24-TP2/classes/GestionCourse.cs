@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
+using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -124,11 +125,24 @@ namespace _420_14B_FX_A24_TP2.classes
         }
 
         /// <summary>
-        /// 
+        /// ajoute une course a la liste si elle n'est pas nulle et si elle n'est pas repeter
         /// </summary>
-        /// <param name="course"></param>
+        /// <param name="course">La course a ajouter</param>
         public void AjouterCourse(Course course)
         {
+            if (course == null)
+                throw new ArgumentNullException("Error", "La course est vide.");
+
+            foreach (Course courses in Courses)
+            {
+                if(course.Id == courses.Id)
+                {
+                    Courses.Add(courses);
+
+
+                }
+
+            }
 
         }
 
