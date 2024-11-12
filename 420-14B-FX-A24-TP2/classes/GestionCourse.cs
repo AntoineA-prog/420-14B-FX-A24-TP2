@@ -147,14 +147,28 @@ namespace _420_14B_FX_A24_TP2.classes
         }
 
         /// <summary>
-        /// 
+        /// verifier si la course existe et si elle est dans la liste puis l'efface de la liste
         /// </summary>
-        /// <param name="course"></param>
-        /// <returns></returns>
+        /// <param name="course">Course a effeacer de la liste</param>
+        /// <returns>retourn vrai si la liste est effacer, retourn faux si la course n'a pas ete effacer</returns>
         public bool SupprimerCourse(Course course)
         {
-            bool test = true;
-            return test;
+            if (course == null)
+                throw new ArgumentNullException("Error", "La course est vide.");
+
+            foreach (Course courses in Courses)
+            {
+                if (course.Id == courses.Id)
+                {
+                    //delete
+
+                    return true;
+                }
+
+            }
+
+            
+            return false;
 
         }
 
