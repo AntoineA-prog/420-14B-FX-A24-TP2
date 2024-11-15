@@ -61,8 +61,10 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         private List<Coureur> _coureurs;
 
-
-
+        /// <summary>
+        /// Nombre de participants
+        /// </summary>
+        private int _nbParticipants;
 
         /// <summary>
         /// Obtient ou définit l'identifiant unique d'une course
@@ -89,13 +91,19 @@ namespace _420_14B_FX_A24_TP2.classes
 
             set 
             {
-                if (string.IsNullOrEmpty(value) || value.Length >= NOM_NB_CAR_MIN)
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    _nom = value.Trim().ToUpper();
+                    throw new ArgumentNullException("ERREUR", $"Le nom est vide");
+
+                    
+                }
+                else if(value.Length < NOM_NB_CAR_MIN)
+                {
+                    throw new ArgumentOutOfRangeException("ERREUR", $"Le nom ne respecte pas le nombre de caractères minimum ({NOM_NB_CAR_MIN})");
+
                 }
                 else
-                    throw new ArgumentNullException("ERREUR", $"Le nom est soit vide soit ne respecte pas le nombre de caractères minimum ({NOM_NB_CAR_MIN})");
-
+                    _nom = value.Trim().ToUpper();
             }
         }
 
@@ -116,19 +124,21 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         /// <value>Obtien ou modifie la valeur de l'attribut :  _ville.</value>
         /// <exception cref="System.ArgumentNullException">Lancée lorsque que la ville est nulle ou n'a aucune valeur.</exception>
-        /// <exception cref="System.ArgumentNullException">Lancé lors que la ville a moins de VILLE_NB_CAR_MIN caractères.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Lancé lors que la ville a moins de VILLE_NB_CAR_MIN caractères.</exception>
         public string Ville
         {
             get { return _ville; }
             set 
             {
-                if (string.IsNullOrEmpty(value) || value.Length >= VILLE_NB_CAR_MIN)
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("ERREUR", $"La ville entrée est vide");
+                }
+                else if (value.Trim().Length < VILLE_NB_CAR_MIN)
+                    throw new ArgumentOutOfRangeException("La ville entrée ne respecte pas le nombre de caractères minimum ({VILLE_NB_CAR_MIN})");
+                else if (value.Length >= VILLE_NB_CAR_MIN)
                 {
                     _ville = value.Trim();
-                }
-                else
-                {
-                    throw new ArgumentNullException("ERREUR", $"Le nom entré est soit vide soit ne respecte pas le nombre de caractères minimum ({VILLE_NB_CAR_MIN})");
                 }
 
                 
@@ -199,8 +209,8 @@ namespace _420_14B_FX_A24_TP2.classes
         }
 
 
-     
 
+        
         /// <summary>
         ///Obtient le nombre de coureurs participant à la course
         /// </summary>
@@ -208,8 +218,13 @@ namespace _420_14B_FX_A24_TP2.classes
         public int NbParticipants
         {
             get {
-                throw new NotImplementedException();
+
+                _nbParticipants = Coureurs.Count;
+
+                return _nbParticipants;
             }
+            
+
       
         }
 
@@ -240,7 +255,11 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <remarks>Initialise une liste de coureurs vide</remarks>
         public Course(Guid id, string nom, DateOnly date, string ville, Province province, TypeCourse typeCourse, ushort distance )
         {
-            Id = id;
+
+            if (id == Guid.Empty)
+                throw new ArgumentException("La valeur attitré à l'id est vide. Veuillez ne pas personnaliser l'ID.");
+            else
+                Id = id;
             Nom = nom;
             Date = date;
             Ville = ville;
@@ -300,7 +319,7 @@ namespace _420_14B_FX_A24_TP2.classes
              //ok
             if (noDossard < 1)
             {
-                throw new ArgumentException("Erreur", "Le numéro de dossard est inférieur à 1");
+                throw new ArgumentOutOfRangeException("Erreur", "Le numéro de dossard est inférieur à 1");
             }
 
             foreach (Coureur coureur in Coureurs)
@@ -345,16 +364,38 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="coureur"></param>
         public void SupprimerCoureur(Coureur coureur)
         {
-            int i = 0;
-            foreach (Coureur coureurChoisi in Coureurs)
+            if (coureur == null)
+                throw new ArgumentNullException("Aucun coureur n'a été entré(null)");
+
+            bool valid = false;
+            
+
+            /// utiliser for
+            /// 
+
+            for (int i = 0; i < Coureurs.Count; i++)
             {
-                if (coureurChoisi == Coureurs[i])
+                if (coureur == Coureurs[i])
                 {
                     Coureurs.RemoveAt(i);
-
+                    valid = true;
                 }
-                i++;
             }
+            //foreach (Coureur coureurChoisi in Coureurs)
+            //{
+            //    if (coureurChoisi == Coureurs[i])
+            //    {
+            //        Coureurs.RemoveAt(i);
+            //        valid = true;
+            //    }
+                
+                
+            //}
+            if (!valid)
+            {
+                throw new InvalidOperationException("Le coureur est inexistant");
+            }
+            
         }
         
         /// <summary>
