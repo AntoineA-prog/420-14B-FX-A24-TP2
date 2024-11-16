@@ -9,7 +9,7 @@ namespace _420_14B_FX_A24_TP2.classes
     /// <summary>
     /// Classe représentant une course à pied
     /// </summary>
-    public class Course
+    public class Course 
     {
 
         public const int NOM_NB_CAR_MIN = 3;
@@ -205,7 +205,10 @@ namespace _420_14B_FX_A24_TP2.classes
         public List<Coureur> Coureurs
         {
             get { return _coureurs; }
-            set { _coureurs = value; }
+            set { 
+
+                _coureurs = value; 
+            }
         }
 
 
@@ -354,8 +357,10 @@ namespace _420_14B_FX_A24_TP2.classes
                     TempCourseMoyen = TempCourseMoyen.Add(coureur.Temps);
 
                 }
+
                
             }
+
             return TempCourseMoyen;
         }
         /// <summary>
@@ -403,6 +408,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         public void TrierCoureurs()
         {
+            
             Coureurs.Sort();
         }
 

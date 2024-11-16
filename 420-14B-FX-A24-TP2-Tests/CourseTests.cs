@@ -531,7 +531,7 @@ namespace _420_14B_FX_TP2_Test
                 course.AjouterCoureur(coureur1);
 
                 Coureur coureur2 = new Coureur(2, "Boucher", "Jean-Philippe", Categorie.M4049, "Québec", Province.Quebec, new TimeSpan(0, 0, 0));
-                coureur2.Abandon = true;
+                coureur2.Abandon = true; //If Abandon, and then sort?
                 course.AjouterCoureur(coureur2);
 
            
