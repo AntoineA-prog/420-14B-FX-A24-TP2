@@ -4,6 +4,7 @@ using System;
 using System.Globalization;
 using System.Windows.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -307,15 +308,17 @@ namespace _420_14B_FX_A24_TP2.classes
             if (object.ReferenceEquals(coureurGauche, coureurDroit))
                 return true;
 
-            if ((Object)coureurGauche == null || (Object)coureurDroit == null)
+            if ((System.Object)coureurGauche == null || (System.Object)coureurDroit == null)
                 return false;
 
-            if (coureurGauche.Equals(coureurDroit))
+            if (coureurGauche.Dossard == coureurDroit.Dossard && coureurGauche.Nom == coureurDroit.Nom && coureurGauche.Prenom == coureurDroit.Prenom && coureurGauche.Categorie == coureurDroit.Categorie && coureurGauche.Ville == coureurDroit.Ville && coureurGauche.Province == coureurDroit.Province && coureurGauche.Temps == coureurDroit.Temps && coureurGauche.Abandon == coureurDroit.Abandon)
             {
                 return true;
             }
 
             return false;
+
+            
         }
 
         /// <summary>
