@@ -1,8 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
-using System;
-using System.Globalization;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 
 namespace _420_14B_FX_A24_TP2.classes
@@ -437,7 +435,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if (object.ReferenceEquals(courseGauche, courseDroite))
                 return true;
 
-            if ((System.Object)courseGauche == null || (System.Object)courseDroite == null)
+            if ((Object)courseGauche == null || (Object)courseDroite == null)
                 return false;
 
             if ( courseGauche.Nom == courseDroite.Nom && courseGauche.Date == courseDroite.Date && courseGauche.Date == courseDroite.Date && courseGauche.Ville == courseDroite.Ville && courseGauche.Province == courseDroite.Province && courseGauche.TypeCourse == courseDroite.TypeCourse && courseGauche.Distance == courseDroite.Distance)

@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_420_14B_FX_A24_TP2"
         mc:Ignorable="d"
-        Title="Coureur" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Fiche du Coureur" Height="450" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <StackPanel Margin="10" HorizontalAlignment="Center">
+        <TextBlock x:Name="tbTitre" FontWeight="Bold" HorizontalAlignment="Center">Modification d'un Coureur</TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+            <Label Content="No. Dossard" Width="100"></Label>
+            <TextBlock x:Name="txtNoDossard"  Width="100"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+            <Label Content="Nom" Width="100"></Label>
+            <TextBlock x:Name="txtNom"  Width="250"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+            <Label Content="Prenom" Width="100"></Label>
+            <TextBlock x:Name="txtPrenom"  Width="250"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+            <Label Content="Ville" Width="100"></Label>
+            <TextBlock x:Name="txtVille"  Width="250"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+            <Label Content="Province" Width="100"></Label>
+            <ComboBox x:Name="txtProvince"  Width="250"></ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,5">
+            <Label Content="" Width="100"></Label>
+            <ComboBox x:Name="txtProvince"  Width="250"></ComboBox>
+        </StackPanel>
+    </StackPanel>
+
 </Window>
