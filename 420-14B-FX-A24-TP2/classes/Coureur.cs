@@ -10,7 +10,7 @@ namespace _420_14B_FX_A24_TP2.classes
     /// <summary>
     /// Classe représentant un coureur
     /// </summary>
-    public class Coureur
+    public class Coureur : IComparable<Coureur>
     {
         public const byte DOSSARD_VAL_MIN = 1;
         public const byte NOM_NB_CARC_MIN = 3;
@@ -285,13 +285,13 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <summary>
         /// Permet de comparer deux coureurs. Deux coureurs sont identiques s’ils ont le même nom, prénom, ville et province.
         /// </summary>
-        /// <param name="obj">obj est l'a variable comparer</param>
+        /// <param name="obj">obj est la variable comparé</param>
         /// <returns>Retourne si l'objet est egale (true) our non(false)</returns>
         public override bool Equals(object? obj)
         {
             if (obj is null || obj is not Coureur) return false;
 
-
+            e
             return this == (Coureur)obj;
         }  
 
