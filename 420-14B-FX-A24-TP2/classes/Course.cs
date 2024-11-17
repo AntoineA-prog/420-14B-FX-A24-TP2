@@ -436,7 +436,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if (object.ReferenceEquals(courseGauche, courseDroite))
                 return true;
 
-            if (courseGauche == null || courseDroite == null)
+            if ((Object)courseGauche == null || (Object)courseDroite == null)
                 return false;
 
             if (courseGauche.Equals(courseDroite))
@@ -454,7 +454,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns></returns>
         public static bool operator !=(Course courseGauche, Course courseDroite)
         {
-            return (courseGauche != courseDroite);
+            return !(courseGauche == courseDroite);
         }
 
         /// <summary>

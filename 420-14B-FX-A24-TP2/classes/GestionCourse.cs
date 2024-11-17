@@ -133,16 +133,24 @@ namespace _420_14B_FX_A24_TP2.classes
             if (course == null)
                 throw new ArgumentNullException("Error", "La course est vide.");
 
+
+            bool test=true;
             foreach (Course courses in Courses)
             {
-                if(course.Id != courses.Id)
+                if(course.Id == courses.Id)
                 {
-                    Courses.Add(courses);
 
-
+                    test = false;
+                        
                 }
 
             }
+
+            if (test)
+            {
+                Courses.Add(course);
+            }
+
 
         }
 
