@@ -263,7 +263,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if (id == Guid.Empty)
                 throw new ArgumentException("La valeur attitré à l'id est vide. Veuillez ne pas personnaliser l'ID.");
             else
-                Id = id;
+            Id = id;
             Nom = nom;
             Date = date;
             Ville = ville;

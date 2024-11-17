@@ -35,7 +35,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public GestionCourse(string cheminFichierCourses, string cheminFichierCoureurs_)
         {
            Courses =new List<Course>();
-           
+            
         }
 
         /// <summary>
@@ -142,8 +142,8 @@ namespace _420_14B_FX_A24_TP2.classes
 
             
             Courses.Add(course);
+
             
-            Courses.Sort();
 
 
         }
@@ -189,6 +189,35 @@ namespace _420_14B_FX_A24_TP2.classes
 
             if (string.IsNullOrWhiteSpace(cheminFichierCoureurs))
                 throw new ArgumentNullException("Error", "Le chemin pour le fichier avec les coureurs est vide.");
+
+
+            string lignesCourses = "Id;nom;ville;province;date;type;distance\n";
+
+            for (int i = 0; i < Courses.Count; i++)
+            {
+                
+
+                Course course = Courses[i];
+                if(course != null)
+                {
+                    lignesCourses += $"{course.Id};{course.Nom};{course.Ville};{course.Province};{course.Date};{course.TypeCourse};{course.Distance}\n";
+                }
+            }
+            Utilitaire.EnregistrerDonnees(lignesCourses, cheminFichierCourses);
+
+
+            string lignesCoureur = "IdCourse;dossard;nom;prenom;ville;province;categorie;temps;abandon\n";
+
+            for (int i = 0; i < Courses.Count; i++)
+            {
+                Course course = Courses[i];
+                Coureur coureurs = course.Coureurs;
+                if (coureur.Coureurs != null)
+                {
+                    lignesCoureur += $"{coureur.Id};{coureur.Coureurs.Nom};{course.Ville};{course.Province};{course.Date};{course.TypeCourse};{course.Distance}\n";
+                }
+            }
+            Utilitaire.EnregistrerDonnees(lignesCoureur, cheminFichierCoureurs);
         }
     }
 }

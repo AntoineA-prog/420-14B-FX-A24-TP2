@@ -260,7 +260,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns>Une chaine de caractere contenant les variables</returns>
         public override string ToString()
         {
-            return $"{Dossard}, {Nom}, {Prenom}, {Categorie}, {Ville}, {Province}, {Temps}, {Abandon}";
+            return $"{Dossard}, {Nom,-20}, {Prenom,-20}, {Categorie,-20}, {Ville,-20}, {Province,-20}, {Temps,-20}, {Abandon,-20}";
         }
 
         /// <summary>
