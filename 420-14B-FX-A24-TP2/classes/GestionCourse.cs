@@ -160,7 +160,7 @@ namespace _420_14B_FX_A24_TP2.classes
             {
                 if (course.Id == courses.Id)
                 {
-                    //delete
+                    Courses.Remove(course);
 
                     return true;
                 }
