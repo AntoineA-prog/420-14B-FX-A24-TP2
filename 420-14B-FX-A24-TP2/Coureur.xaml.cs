@@ -73,10 +73,10 @@ namespace _420_14B_FX_A24_TP2
                 case EtatFormulaire.Modifier:
                 case EtatFormulaire.Supprimer:
 
-                    if (Etat == EtatFormulaire.Supprimer)
+                    if (Etat == EtatFormulaire.Supprimer || EtatFormulaire.Modifier == Etat)
                     {
-                        txtNom.IsEnabled = false;
-                        txtPrenom.IsEnabled = false;
+                        txtNoDossard.IsEnabled = false;
+                        
 
                     }
                     break;
@@ -109,6 +109,12 @@ namespace _420_14B_FX_A24_TP2
             if (!Enum.IsDefined(typeof(Province), cboProvince.SelectedIndex))
                 sb.AppendLine("Choisir une province");
 
+            if (sb.Length > 0)
+            {
+                MessageBox.Show(sb.ToString(), "Validation Formulaire");
+                return false;
+            }
+
 
             return true;
         }
@@ -125,14 +131,21 @@ namespace _420_14B_FX_A24_TP2
                     {
 
 
-                        Coureurs = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value, cbAbandon);
+                        Coureur coureurNew = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value, cbAbandon);
+                        Course.AjouterCoureur(coureurNew);
                         DialogResult = true;
 
                     }
                     else
                     {
+                        
                         Coureurs.Nom = txtNom.Text;
                         Coureurs.Prenom = txtPrenom.Text;
+                        Coureurs.Categorie = (Categorie)cboCategorie.SelectedIndex;
+                        Coureurs.Ville = txtVille.Text;
+                        Coureurs.Province = (Province)cboProvince.SelectedIndex;
+                        Coureurs.Temps = (TimeSpan)tsTemps.Value;
+                        Coureurs.Abandon = cbAbandon;
                     }
                     DialogResult = true;
 
