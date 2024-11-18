@@ -230,6 +230,9 @@ namespace _420_14B_FX_A24_TP2.classes
       
         }
 
+
+        private TimeSpan _TempsCourseMoyen;
+
         /// <summary>
         ///Obtien le temps de course moyen
         /// </summary>
@@ -237,7 +240,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public TimeSpan TempCourseMoyen
         {
             get { 
-                throw new NotImplementedException(); 
+                return _TempsCourseMoyen;
             }
           
         }
