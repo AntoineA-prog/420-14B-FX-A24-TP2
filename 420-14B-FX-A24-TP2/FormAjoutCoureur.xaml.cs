@@ -17,16 +17,14 @@ using System.Windows.Shapes;
 namespace _420_14B_FX_A24_TP2
 {
     /// <summary>
-    /// Logique d'interaction pour Coureur.xaml
+    /// Logique d'interaction pour FormAjoutCoureur.xaml
     /// </summary>
-    public partial class Coureur : Window
+    public partial class FormAjoutCoureur : Window
     {
-
         public const byte DOSSARD_VAL_MIN = 1;
         public const byte NOM_NB_CARC_MIN = 3;
         public const byte PRENOM_NB_CARC_MIN = 3;
         public const byte VILLE_NB_CARC_MIN = 4;
-
 
 
         private Coureur _coureur;
@@ -37,7 +35,6 @@ namespace _420_14B_FX_A24_TP2
             private set { _coureur = value; }
         }
 
-
         private EtatFormulaire _etat;
 
         public EtatFormulaire Etat
@@ -46,7 +43,7 @@ namespace _420_14B_FX_A24_TP2
             private set { _etat = value; }
         }
 
-        public Coureur(Coureur coureurs = null, EtatFormulaire etat = EtatFormulaire.Ajouter)
+        public FormAjoutCoureur(Coureur coureurs = null, EtatFormulaire etat = EtatFormulaire.Ajouter)
         {
             Coureurs = coureurs;
             Etat = etat;
@@ -73,10 +70,10 @@ namespace _420_14B_FX_A24_TP2
                 case EtatFormulaire.Modifier:
                 case EtatFormulaire.Supprimer:
 
-                    if (Etat == EtatFormulaire.Supprimer || EtatFormulaire.Modifier == Etat)
+                    if (Etat == EtatFormulaire.Supprimer)
                     {
-                        txtNoDossard.IsEnabled = false;
-                        
+                        txtNom.IsEnabled = false;
+                        txtPrenom.IsEnabled = false;
 
                     }
                     break;
@@ -109,12 +106,6 @@ namespace _420_14B_FX_A24_TP2
             if (!Enum.IsDefined(typeof(Province), cboProvince.SelectedIndex))
                 sb.AppendLine("Choisir une province");
 
-            if (sb.Length > 0)
-            {
-                MessageBox.Show(sb.ToString(), "Validation Formulaire");
-                return false;
-            }
-
 
             return true;
         }
@@ -131,21 +122,14 @@ namespace _420_14B_FX_A24_TP2
                     {
 
 
-                        Coureur coureurNew = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value, cbAbandon);
-                        Course.AjouterCoureur(coureurNew);
+                        Coureurs = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value, Convert.ToBoolean(cbAbandon));
                         DialogResult = true;
 
                     }
                     else
                     {
-                        
                         Coureurs.Nom = txtNom.Text;
                         Coureurs.Prenom = txtPrenom.Text;
-                        Coureurs.Categorie = (Categorie)cboCategorie.SelectedIndex;
-                        Coureurs.Ville = txtVille.Text;
-                        Coureurs.Province = (Province)cboProvince.SelectedIndex;
-                        Coureurs.Temps = (TimeSpan)tsTemps.Value;
-                        Coureurs.Abandon = cbAbandon;
                     }
                     DialogResult = true;
 
@@ -157,7 +141,7 @@ namespace _420_14B_FX_A24_TP2
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    Coureur supCoureur =new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value, cbAbandon);
+                    Coureur supCoureur = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value,Convert.ToBoolean( cbAbandon));
                     Course.SupprimerCoureur(supCoureur);
 
                     DialogResult = true;
