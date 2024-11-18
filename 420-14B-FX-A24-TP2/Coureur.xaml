@@ -38,11 +38,11 @@
             <xctk:TimeSpanUpDown x:Name="tsTemps" Height="25" Width="100" HorizontalAlignment="Left"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-            <CheckBox x:Name="cbAbandon" Content="Abandon" Checked="cbAbandon_Checked" />
+            <CheckBox x:Name="cbAbandon" Content="Abandon" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
             <Button x:Name="btnModifier" Content="Modifier" Width="100" Margin="5,5"> </Button>
-            <Button x:Name="btnAnnuler" Content="Annuler" Width="100" Margin="5,5" ></Button>
+            <Button x:Name="btnAnnuler" Content="Annuler" Width="100" Margin="5,5" Click="btnAnnuler_Click" ></Button>
         </StackPanel>
 
 
