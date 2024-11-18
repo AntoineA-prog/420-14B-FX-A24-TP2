@@ -190,10 +190,13 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _distance; }
             set 
             {
-                if (value > DISTANCE_VAL_MIN)
-                    _distance = value; 
-                else
+                if (value < DISTANCE_VAL_MIN)
                     throw new ArgumentOutOfRangeException("ERREUR", "Le type de course ne se retrouve pas dans la liste");
+               
+                    
+
+
+                _distance = value;
             }
         }
 

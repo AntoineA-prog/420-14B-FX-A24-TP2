@@ -205,6 +205,7 @@ namespace _420_14B_FX_A24_TP2.classes
             get { return _temps; }
             set  { _temps = value; }
         }
+
         /// <summary>
         /// Obtient ou défini le rang du coureur
         /// </summary>

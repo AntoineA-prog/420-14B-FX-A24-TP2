@@ -7,6 +7,7 @@ using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -140,14 +141,11 @@ namespace _420_14B_FX_A24_TP2.classes
                 throw new InvalidOperationException("La course que vous voulez ajouter existe deja.");
             }
 
+
             
             Courses.Add(course);
+          //Coureur.TrierCoureurs();
 
-
-
-            //Courses.Date.Reverse();
-            //Courses.Nom.Sort():
-            
 
 
         }

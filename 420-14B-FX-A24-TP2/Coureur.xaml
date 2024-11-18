@@ -27,11 +27,11 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Province" Width="100"></Label>
-            <ComboBox x:Name="txtProvince"  Width="250"></ComboBox>
+            <ComboBox x:Name="cboProvince"  Width="250"></ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Categorie" Width="100"></Label>
-            <ComboBox x:Name="txtCategorie"  Width="250"></ComboBox>
+            <ComboBox x:Name="cboCategorie"  Width="250"></ComboBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5">
             <Label Content="Temps" Width="100"></Label>
@@ -41,8 +41,8 @@
             <CheckBox x:Name="cbAbandon" Content="Abandon" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-            <Button x:Name="btnModifier" Content="Modifier" Width="100" Margin="5,5"> </Button>
-            <Button x:Name="btnAnnuler" Content="Annuler" Width="100" Margin="5,5" Click="btnAnnuler_Click" ></Button>
+            <Button x:Name="btnModifier" Content="Modifier" Width="100" Margin="5,5" Click="btnModifier_Click"> </Button>
+            <Button x:Name="btnAnnuler" Content="Annuler" Width="100" Margin="5,5" />
         </StackPanel>
 
 
