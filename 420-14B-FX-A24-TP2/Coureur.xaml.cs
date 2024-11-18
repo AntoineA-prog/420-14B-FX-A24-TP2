@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _420_14B_FX_A24_TP2.enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,52 @@ namespace _420_14B_FX_A24_TP2
     /// <summary>
     /// Logique d'interaction pour Coureur.xaml
     /// </summary>
-    public partial class Coureur : Window
+    public partial class formAjoutCoureur : Window
     {
-        public Coureur()
+        private Coureur _coureur;
+
+        public Coureur Coureurs
         {
-            InitializeComponent();
+            get { return _coureur; }
+            private set { _coureur = value; }
+        }
+
+
+        private EtatFormulaire _etat;
+
+        public EtatFormulaire Etat
+        {
+            get { return _etat; }
+            private set { _etat = value; }
+        }
+
+        public formAjoutCoureur(Coureur coureurs=null, EtatFormulaire etat=EtatFormulaire.Ajouter)
+        {
+            Coureurs = coureurs;
+            Etat = etat;
+        }
+
+        private void btnAnnuler_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
+        private bool Validerformulaire()
+        {
+            StringBuilder sb = new StringBuilder();
+
+
+
+
+
+
+
+
+
+
+
+
+            return true;
         }
     }
 }

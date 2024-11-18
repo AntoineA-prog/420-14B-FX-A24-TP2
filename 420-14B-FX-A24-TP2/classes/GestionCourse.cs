@@ -34,8 +34,8 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="cheminFichierCoureurs_">Chemin au fichier avec les coureurs</param>
         public GestionCourse(string cheminFichierCourses, string cheminFichierCoureurs_)
         {
-           Courses =new List<Course>();
-            
+            Courses =new List<Course>();
+            ChargerCourses(cheminFichierCourses, cheminFichierCoureurs_);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if(string.IsNullOrWhiteSpace(cheminFichierCourses))
                 throw new ArgumentNullException("Error", "Le chemin pour le fichier course est vide ");
 
-            string[] vectDonnee = Utilitaire.ChargerDonnees(cheminFichierCourses);
+            string[] vectDonnee = Utilitaire.ChargerDonnees(cheminFichierCourses); 
             string[] vectLigne;
 
 
@@ -77,10 +77,10 @@ namespace _420_14B_FX_A24_TP2.classes
         }
 
         /// <summary>
-        /// 
+        /// Charge les coureur stocker dans les ficher dans Courses
         /// </summary>
-        /// <param name="course"></param>
-        /// <param name="cheminFichierCoureurs"></param>
+        /// <param name="course">Course dans laquelle on ajoute des coureurs (qui cours cette course)</param>
+        /// <param name="cheminFichierCoureurs">Chemin pour acceder au donnee des courseurs</param>
         private void ChargerCoureurs(Course course, string cheminFichierCoureurs)
         {
 
@@ -105,16 +105,16 @@ namespace _420_14B_FX_A24_TP2.classes
                 {
 
 
-                    ushort distance = ushort.Parse(vectLigne[1]);
-                    string nom = vectLigne[1];
-                    string prenom = vectLigne[2];
-                    Categorie categorie = (Categorie)(Convert.ToByte(vectLigne[3]));
+                    ushort dossard = ushort.Parse(vectLigne[1]);
+                    string nom = vectLigne[2];
+                    string prenom = vectLigne[3];
                     string ville = vectLigne[4];
                     Province province = (Province)(Convert.ToByte(vectLigne[5]));
-                    TimeSpan temps = TimeSpan.Parse(vectLigne[6]);
-                    bool abandon = bool.Parse(vectLigne[7]);
+                    Categorie categorie = (Categorie)(Convert.ToByte(vectLigne[6]));
+                    TimeSpan temps = TimeSpan.Parse(vectLigne[7]);
+                    bool abandon = bool.Parse(vectLigne[8]);
 
-                    Coureur coureur = new Coureur(distance, nom, prenom, categorie, ville, province,temps,abandon);
+                    Coureur coureur = new Coureur(dossard, nom, prenom, categorie, ville, province,temps,abandon);
                     course.Coureurs.Add(coureur);
 
                 }
@@ -143,6 +143,10 @@ namespace _420_14B_FX_A24_TP2.classes
             
             Courses.Add(course);
 
+
+
+            //Courses.Date.Reverse();
+            //Courses.Nom.Sort():
             
 
 
@@ -211,10 +215,14 @@ namespace _420_14B_FX_A24_TP2.classes
             for (int i = 0; i < Courses.Count; i++)
             {
                 Course course = Courses[i];
-                Coureur coureurs = course.Coureurs;
-                if (coureur.Coureurs != null)
+                foreach (Coureur coureurs in course.Coureurs)
                 {
-                    lignesCoureur += $"{coureur.Id};{coureur.Coureurs.Nom};{course.Ville};{course.Province};{course.Date};{course.TypeCourse};{course.Distance}\n";
+                   
+                    if (coureurs != null)
+                    {
+                        lignesCoureur += $"{course.Id};{coureurs.Dossard};{coureurs.Nom};{coureurs.Prenom};{coureurs.Ville};{coureurs.Province};{coureurs.Categorie};{coureurs.Temps};{coureurs.Abandon}\n";
+                    }
+
                 }
             }
             Utilitaire.EnregistrerDonnees(lignesCoureur, cheminFichierCoureurs);

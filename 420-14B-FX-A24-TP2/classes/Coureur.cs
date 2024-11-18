@@ -1,5 +1,7 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System.Globalization;
+using System.Windows.Controls;
 
 
 namespace _420_14B_FX_A24_TP2.classes
@@ -278,6 +280,7 @@ namespace _420_14B_FX_A24_TP2.classes
 
         }
 
+        
 
         /// <summary>
         /// Permet de comparer deux coureurs. Deux coureurs sont identiques s’ils ont le même nom, prénom, ville et province.
@@ -328,6 +331,7 @@ namespace _420_14B_FX_A24_TP2.classes
             return !(coureurGauche == coureurDroit);
 
         }
+
 
 
 
