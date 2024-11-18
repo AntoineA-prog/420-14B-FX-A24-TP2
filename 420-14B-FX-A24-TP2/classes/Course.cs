@@ -419,7 +419,7 @@ namespace _420_14B_FX_A24_TP2.classes
         }
 
         /// <summary>
-        /// Permet de retourner 
+        /// Permet de retourner deux courses en fonction de leur date OU leur nom
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>

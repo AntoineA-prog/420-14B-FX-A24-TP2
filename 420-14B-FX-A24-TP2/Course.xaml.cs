@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using System;
+using _420_14B_FX_A24_TP2.classes;
+using _420_14B_FX_A24_TP2.enums;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +25,11 @@ namespace _420_14B_FX_A24_TP2
         public Course()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
