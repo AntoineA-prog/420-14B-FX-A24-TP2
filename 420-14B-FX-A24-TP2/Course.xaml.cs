@@ -22,6 +22,7 @@ namespace _420_14B_FX_A24_TP2
     public partial class Course : Window
     {
         private List<Coureur> coureur;
+        GestionCourse gestioncourse;
 
         public Course()
         {
@@ -109,6 +110,18 @@ namespace _420_14B_FX_A24_TP2
             {
                 MessageBox.Show("vous devez selectionner une personne ");
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            gestioncourse.EnregistrerCourses(MainWindow.CHEMIN_FICHIER_COURSE, MainWindow.CHEMIN_FICHIER_COUREURS);
+            MessageBox.Show("Sauvegarder! ");
+            DialogResult = true;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }

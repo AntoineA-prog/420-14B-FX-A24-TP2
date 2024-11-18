@@ -93,7 +93,7 @@
                         </StackPanel>
                     </TabItem>
 
-                    <TabItem Header="Coureurs" Margin="-2,-2,0,2" HorizontalAlignment="Left" Width="64">
+                    <TabItem Header="Coureurs" Margin="-2,-2,0,0" HorizontalAlignment="Left" Width="64" Height="22" VerticalAlignment="Top">
 
                         <StackPanel>
 
@@ -120,8 +120,8 @@
                 </TabControl>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="Modifier" Width="100" Margin="10,10,0,0"></Button>
-                    <Button Content="Annuler" Width="100" Margin="10,10,0,0"></Button>
+                    <Button Content="Modifier" Width="100" Margin="10,10,0,0" Click="Button_Click"></Button>
+                    <Button Content="Annuler" Width="100" Margin="10,10,0,0" Click="Button_Click_1"></Button>
                 </StackPanel>
             </Grid>
 

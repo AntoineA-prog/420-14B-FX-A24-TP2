@@ -8,7 +8,18 @@ namespace _420_14B_FX_A24_TP2
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+
+        /// <summary>
+        /// Nom du fichier texte CSV contenant les informations sur la course pour les tests.
+        /// </summary>
+        public const String CHEMIN_FICHIER_COURSE = @"C:\data-420-14B-FX\TP2\Tests\courses.csv";
+
+        /// <summary>
+        /// Nom du fichier texte CSV contenant les informations sur les coureurs.
+        /// </summary>
+        public const String CHEMIN_FICHIER_COUREURS = @"C:\data-420-14B-FX\TP2\Tests\coureurs.csv";
+
+
         public MainWindow()
         {
             InitializeComponent();
