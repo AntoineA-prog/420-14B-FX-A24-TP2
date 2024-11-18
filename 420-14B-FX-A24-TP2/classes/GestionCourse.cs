@@ -6,6 +6,7 @@ using System.Security;
 using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -34,6 +35,7 @@ namespace _420_14B_FX_A24_TP2.classes
         public GestionCourse(string cheminFichierCourses, string cheminFichierCoureurs_)
         {
            Courses =new List<Course>();
+            
         }
 
         /// <summary>
@@ -41,7 +43,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// </summary>
         /// <param name="cheminFichierCourses"> Chemin pour acceder au donnee des courses</param>
         /// <param name="cheminFichierCoureurs">Chemin pour acceder au donnee des courseurs</param>
-        private void ChargerCourse(string cheminFichierCourses, string cheminFichierCoureurs)
+        private void ChargerCourses(string cheminFichierCourses, string cheminFichierCoureurs)
         {
             if(string.IsNullOrWhiteSpace(cheminFichierCoureurs))
                throw new ArgumentNullException("Error", "Le chemin pour le fichier coureurs est vide ");
@@ -133,16 +135,16 @@ namespace _420_14B_FX_A24_TP2.classes
             if (course == null)
                 throw new ArgumentNullException("Error", "La course est vide.");
 
-            foreach (Course courses in Courses)
+            if (Courses.Contains(course))
             {
-                if(course.Id == courses.Id)
-                {
-                    Courses.Add(courses);
-
-
-                }
-
+                throw new InvalidOperationException("La course que vous voulez ajouter existe deja.");
             }
+
+            
+            Courses.Add(course);
+
+            
+
 
         }
 
@@ -156,19 +158,22 @@ namespace _420_14B_FX_A24_TP2.classes
             if (course == null)
                 throw new ArgumentNullException("Error", "La course est vide.");
 
+            if (!Courses.Contains(course))
+            {
+                throw new InvalidOperationException("La course n'est pas dans la liste");
+            }
+
             foreach (Course courses in Courses)
             {
                 if (course.Id == courses.Id)
                 {
-                    //delete
-
-                    return true;
+                    return Courses.Remove(course);
                 }
 
             }
-
             
-            return false;
+            
+           return false;
 
         }
 
@@ -179,7 +184,40 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <param name="cheminFichierCoureurs"></param>
         public void EnregistrerCourses(string cheminFichierCourses, string cheminFichierCoureurs)
         {
+            if (string.IsNullOrWhiteSpace(cheminFichierCourses))
+                throw new ArgumentNullException("Error", "Le chemin pour le fichier avec les courses est vide.");
 
+            if (string.IsNullOrWhiteSpace(cheminFichierCoureurs))
+                throw new ArgumentNullException("Error", "Le chemin pour le fichier avec les coureurs est vide.");
+
+
+            string lignesCourses = "Id;nom;ville;province;date;type;distance\n";
+
+            for (int i = 0; i < Courses.Count; i++)
+            {
+                
+
+                Course course = Courses[i];
+                if(course != null)
+                {
+                    lignesCourses += $"{course.Id};{course.Nom};{course.Ville};{course.Province};{course.Date};{course.TypeCourse};{course.Distance}\n";
+                }
+            }
+            Utilitaire.EnregistrerDonnees(lignesCourses, cheminFichierCourses);
+
+
+            string lignesCoureur = "IdCourse;dossard;nom;prenom;ville;province;categorie;temps;abandon\n";
+
+            for (int i = 0; i < Courses.Count; i++)
+            {
+                Course course = Courses[i];
+                Coureur coureurs = course.Coureurs;
+                if (coureur.Coureurs != null)
+                {
+                    lignesCoureur += $"{coureur.Id};{coureur.Coureurs.Nom};{course.Ville};{course.Province};{course.Date};{course.TypeCourse};{course.Distance}\n";
+                }
+            }
+            Utilitaire.EnregistrerDonnees(lignesCoureur, cheminFichierCoureurs);
         }
     }
 }

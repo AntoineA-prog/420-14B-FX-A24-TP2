@@ -1,9 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
-using System;
-using System.Globalization;
-using System.Windows.Controls;
-using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+
 
 namespace _420_14B_FX_A24_TP2.classes
 {
@@ -259,7 +256,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns>Une chaine de caractere contenant les variables</returns>
         public override string ToString()
         {
-            return $"{Dossard}, {Nom}, {Prenom}, {Categorie}, {Ville}, {Province}, {Temps}, {Abandon}";
+            return $"{Dossard}, {Nom,-20}, {Prenom,-20}, {Categorie,-20}, {Ville,-20}, {Province,-20}, {Temps,-20}, {Abandon,-20}";
         }
 
         /// <summary>
@@ -310,12 +307,14 @@ namespace _420_14B_FX_A24_TP2.classes
             if ((Object)coureurGauche == null || (Object)coureurDroit == null)
                 return false;
 
-            if (coureurGauche.Equals(coureurDroit))
+            if (coureurGauche.Dossard == coureurDroit.Dossard && coureurGauche.Nom == coureurDroit.Nom && coureurGauche.Prenom == coureurDroit.Prenom && coureurGauche.Categorie == coureurDroit.Categorie && coureurGauche.Ville == coureurDroit.Ville && coureurGauche.Province == coureurDroit.Province && coureurGauche.Temps == coureurDroit.Temps && coureurGauche.Abandon == coureurDroit.Abandon)
             {
                 return true;
             }
 
             return false;
+
+            
         }
 
         /// <summary>

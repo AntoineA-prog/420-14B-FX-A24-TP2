@@ -1,7 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
-using System;
-using System.Globalization;
+
 
 
 namespace _420_14B_FX_A24_TP2.classes
@@ -265,7 +264,7 @@ namespace _420_14B_FX_A24_TP2.classes
             if (id == Guid.Empty)
                 throw new ArgumentException("La valeur attitré à l'id est vide. Veuillez ne pas personnaliser l'ID.");
             else
-                Id = id;
+            Id = id;
             Nom = nom;
             Date = date;
             Ville = ville;
@@ -439,10 +438,10 @@ namespace _420_14B_FX_A24_TP2.classes
             if (object.ReferenceEquals(courseGauche, courseDroite))
                 return true;
 
-            if (courseGauche == null || courseDroite == null)
+            if ((Object)courseGauche == null || (Object)courseDroite == null)
                 return false;
 
-            if (courseGauche.Equals(courseDroite))
+            if ( courseGauche.Nom == courseDroite.Nom && courseGauche.Date == courseDroite.Date && courseGauche.Date == courseDroite.Date && courseGauche.Ville == courseDroite.Ville && courseGauche.Province == courseDroite.Province && courseGauche.TypeCourse == courseDroite.TypeCourse && courseGauche.Distance == courseDroite.Distance)
             {
                 return true;
             }
@@ -457,7 +456,7 @@ namespace _420_14B_FX_A24_TP2.classes
         /// <returns></returns>
         public static bool operator !=(Course courseGauche, Course courseDroite)
         {
-            return (courseGauche != courseDroite);
+            return !(courseGauche == courseDroite);
         }
 
         /// <summary>
