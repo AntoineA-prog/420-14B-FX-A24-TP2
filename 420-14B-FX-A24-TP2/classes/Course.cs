@@ -1,5 +1,6 @@
 ﻿
 using _420_14B_FX_A24_TP2.enums;
+using System.Globalization;
 
 
 
@@ -412,6 +413,32 @@ namespace _420_14B_FX_A24_TP2.classes
         {
             
             Coureurs.Sort();
+        }
+
+        /// <summary>
+        /// Permet de retourner 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(Course other)
+        {
+            if (other is null)
+                return 1;
+
+            //Date
+            int date = Date.CompareTo(other.Date);
+            if (date < 0)
+                return date;
+            
+            //Nom
+            int nom = string.Compare(Nom, other.Nom, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace);
+            if (nom > 0)
+                return nom;
+
+            
+
+            return nom; 
+
         }
 
         /// <summary>
