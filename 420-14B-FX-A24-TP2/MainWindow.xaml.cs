@@ -17,6 +17,18 @@ namespace _420_14B_FX_A24_TP2
             set { _gestionCourse = value; }
         }
        
+
+        /// <summary>
+        /// Nom du fichier texte CSV contenant les informations sur la course pour les tests.
+        /// </summary>
+        public const String CHEMIN_FICHIER_COURSE = @"C:\data-420-14B-FX\TP2\Tests\courses.csv";
+
+        /// <summary>
+        /// Nom du fichier texte CSV contenant les informations sur les coureurs.
+        /// </summary>
+        public const String CHEMIN_FICHIER_COUREURS = @"C:\data-420-14B-FX\TP2\Tests\coureurs.csv";
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +41,12 @@ namespace _420_14B_FX_A24_TP2
 
         private void AfficherListeCourses()
         {
-            lstCourses = GestionCourse.ChargerCourses();
+            lstCourses.Items.Clear();
+
+            foreach (Coureur c in courses)
+            {
+                lstCourse.Items.Add(c);
+            }
         }
 
         private void btnNouveau_Click(object sender, RoutedEventArgs e)

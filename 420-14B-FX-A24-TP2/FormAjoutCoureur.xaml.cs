@@ -17,16 +17,14 @@ using System.Windows.Shapes;
 namespace _420_14B_FX_A24_TP2
 {
     /// <summary>
-    /// Logique d'interaction pour Coureur.xaml
+    /// Logique d'interaction pour FormAjoutCoureur.xaml
     /// </summary>
-    public partial class Coureur : Window
+    public partial class FormAjoutCoureur : Window
     {
-
         public const byte DOSSARD_VAL_MIN = 1;
         public const byte NOM_NB_CARC_MIN = 3;
         public const byte PRENOM_NB_CARC_MIN = 3;
         public const byte VILLE_NB_CARC_MIN = 4;
-
 
 
         private Coureur _coureur;
@@ -37,7 +35,6 @@ namespace _420_14B_FX_A24_TP2
             private set { _coureur = value; }
         }
 
-
         private EtatFormulaire _etat;
 
         public EtatFormulaire Etat
@@ -46,7 +43,7 @@ namespace _420_14B_FX_A24_TP2
             private set { _etat = value; }
         }
 
-        public Coureur(Coureur coureurs = null, EtatFormulaire etat = EtatFormulaire.Ajouter)
+        public FormAjoutCoureur(Coureur coureurs = null, EtatFormulaire etat = EtatFormulaire.Ajouter)
         {
             Coureurs = coureurs;
             Etat = etat;
@@ -125,7 +122,7 @@ namespace _420_14B_FX_A24_TP2
                     {
 
 
-                        Coureurs = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value, cbAbandon);
+                        Coureurs = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value, Convert.ToBoolean(cbAbandon));
                         DialogResult = true;
 
                     }
@@ -144,7 +141,7 @@ namespace _420_14B_FX_A24_TP2
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    Coureur supCoureur =new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value, cbAbandon);
+                    Coureur supCoureur = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value,Convert.ToBoolean( cbAbandon));
                     Course.SupprimerCoureur(supCoureur);
 
                     DialogResult = true;
