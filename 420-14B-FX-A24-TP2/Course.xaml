@@ -44,7 +44,7 @@
                                                 <ComboBox.ItemTemplate>
                                                     <DataTemplate>
                                                         <StackPanel>
-                                                            <TextBlock Text="{Binding Data}"/>
+                                                            <TextBlock Text="{Binding Province}"/>
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </ComboBox.ItemTemplate>
@@ -63,7 +63,7 @@
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel>
-                                                        <TextBlock Text="{Binding Data}"/>
+                                                        <TextBlock Text="{Binding TypeCourse}"/>
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ComboBox.ItemTemplate>
@@ -94,7 +94,9 @@
                     </TabItem>
                     
                     <TabItem Header="Coureurs">
-
+                        <ListBox >
+                            
+                        </ListBox>
                     </TabItem>
                 </TabControl>
 
