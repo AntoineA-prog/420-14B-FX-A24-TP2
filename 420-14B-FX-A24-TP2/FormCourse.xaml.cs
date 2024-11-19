@@ -57,7 +57,7 @@ namespace _420_14B_FX_A24_TP2
                 coureur.Add(nouvellePersonne);
 
                 AfficherListeCoureur();
-                MessageBox.Show("Contact ajouter avec succes");
+                MessageBox.Show("Coureur ajouté avec succes");
             }
         }
 
@@ -73,7 +73,7 @@ namespace _420_14B_FX_A24_TP2
                 {
                     AfficherListeCoureur();
 
-                    MessageBox.Show("La personne a ete modifier avec succee!!");
+                    MessageBox.Show("La personne a ete modifié avec succee!!");
 
                 }
 
