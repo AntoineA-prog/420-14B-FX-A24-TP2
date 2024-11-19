@@ -31,12 +31,14 @@ namespace _420_14B_FX_A24_TP2
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+           
         }
 
         private void AfficherListeCourses()
         {
             GestionCourse course = new GestionCourse(CHEMIN_FICHIER_COURSE, CHEMIN_FICHIER_COUREURS);
+            lstCourses .Items.Add(course);
+            
         }
 
         private void btnNouveau_Click(object sender, RoutedEventArgs e)
