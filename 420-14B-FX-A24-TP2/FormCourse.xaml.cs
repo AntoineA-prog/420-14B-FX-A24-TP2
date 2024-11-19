@@ -21,12 +21,13 @@ namespace _420_14B_FX_A24_TP2
     /// <summary>
     /// Logique d'interaction pour Course.xaml
     /// </summary>
-    public partial class Course : Window
+    public partial class FormCourse : Window
     {
         private List<Coureur> coureur;
+        private Course course;
         GestionCourse gestioncourse;
 
-        public Course()
+        public FormCourse()
         {
             InitializeComponent();
         }
@@ -36,12 +37,12 @@ namespace _420_14B_FX_A24_TP2
 
         private void AfficherListeCoureur()
         {
-            //lstCourse.Items.Clear();
+            lstCourse.Items.Clear();
 
-            //foreach (Coureur c in courses)
-            //{
-            //    lstCourse.Items.Add(c);
-            //}
+            foreach (Coureur c in course.Coureurs)
+            {
+                lstCourse.Items.Add(c);
+            }
         }
 
         private void Ajouter_Click(object sender, RoutedEventArgs e)

@@ -9,8 +9,9 @@ namespace _420_14B_FX_A24_TP2
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-       
+
+        private GestionCourse courses;
+        private List<Course> CoursesMain;
 
         /// <summary>
         /// Nom du fichier texte CSV contenant les informations sur la course pour les tests.
@@ -22,22 +23,34 @@ namespace _420_14B_FX_A24_TP2
         /// </summary>
         public const String CHEMIN_FICHIER_COUREURS = @"C:\data-420-14B-FX\TP2\Tests\coureurs.csv";
 
+        
 
         public MainWindow()
         {
+            
             InitializeComponent();
             AfficherListeCourses();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           
+           CoursesMain = new List<Course>();
+           courses = new GestionCourse(CHEMIN_FICHIER_COURSE, CHEMIN_FICHIER_COUREURS);
+
+            foreach (Course c in courses.Courses)
+            {
+                CoursesMain.Add(c);
+            }
+
         }
 
+        
         private void AfficherListeCourses()
         {
-            GestionCourse course = new GestionCourse(CHEMIN_FICHIER_COURSE, CHEMIN_FICHIER_COUREURS);
-            lstCourses .Items.Add(course);
+            foreach (Course c in CoursesMain) {
+                
+                lstCourses.Items.Add(c);
+            }
             
         }
 
