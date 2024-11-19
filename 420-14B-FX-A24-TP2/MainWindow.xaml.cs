@@ -57,62 +57,90 @@ namespace _420_14B_FX_A24_TP2
 
         private void btnNouveau_Click(object sender, RoutedEventArgs e)
         {
-             FormCourse frmCourseInfo = new FormCourse();
-            bool? resultat = frmCourseInfo.ShowDialog();
-            if (frmCourseInfo.ShowDialog() == true)
+            
+
+            MessageBoxResult result = MessageBox.Show("Désirez-vous ajouter la course?", "Ajouter une course", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+
+            if (result == MessageBoxResult.Yes)
             {
-                Course nouvelleCourse = frmCourseInfo.Courses;
-                lstCourses.Items.Add(nouvelleCourse);
-                MessageBox.Show("Course rajouté avec succès");
+                FormCourse frmCourseInfo = new FormCourse();
+                bool? resultat = frmCourseInfo.ShowDialog();
+                if (frmCourseInfo.ShowDialog() == true)
+                {
+                    Course nouvelleCourse = frmCourseInfo.Courses;
+                    lstCourses.Items.Add(nouvelleCourse);
+                    MessageBox.Show("Course rajouté avec succès");
+                }
+                Course course = lstCourses.SelectedItem as Course;
+                AfficherListeCourses();
+                MessageBox.Show("La a été ajouté avec succès", "Ajout d'une course");
             }
 
-            
+
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            if (lstCourses.SelectedItem != null)
+
+            MessageBoxResult result = MessageBox.Show("Désirez-vous modifier la course?", "modifier une course", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+
+            if (result == MessageBoxResult.Yes)
             {
-                Course courseSelected = lstCourses.SelectedItem as Course;
 
-                FormCourse frmPersonne = new FormCourse(courseSelected);
+                if (lstCourses.SelectedItem != null)
 
-                if (frmPersonne.ShowDialog() == true)
+
                 {
-                    AfficherListeCourses();
+                    Course courseSelected = lstCourses.SelectedItem as Course;
 
-                    MessageBox.Show("La course a été modifié avec succee!!");
+                    FormCourse frmPersonne = new FormCourse(courseSelected);
+
+                    if (frmPersonne.ShowDialog() == true)
+                    {
+                        AfficherListeCourses();
+
+                        MessageBox.Show("La course a été modifié avec succee!!");
+
+                    }
 
                 }
-
+                else
+                {
+                    MessageBox.Show("Selectionnez une course");
+                }
+                
             }
-            else
-            {
-                MessageBox.Show("Selectionner une course");
-            }
+            
         }
 
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
-            if (lstCourses.SelectedItem != null)
+            
+            MessageBoxResult result = MessageBox.Show("Désirez-vous ajouter la course?", "Ajouter une course", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+
+            if (result == MessageBoxResult.Yes)
             {
-                Course CourseSelected = lstCourses.SelectedItem as Course;
-
-                FormCourse frmPersonne = new FormCourse(courseSelected);
-
-                if (frmPersonne.ShowDialog() == true)
+                if (lstCourses.SelectedItem != null)
                 {
+                    Course CourseSelected = lstCourses.SelectedItem as Course;
 
-                    AfficherListeCourses();
-                    MessageBox.Show("La course a été supprimé");
+                    FormCourse frmPersonne = new FormCourse(courseSelected);
+
+                    if (frmPersonne.ShowDialog() == true)
+                    {
+
+                        AfficherListeCourses();
+                        MessageBox.Show("La course a été supprimé");
+
+                    }
 
                 }
+                else
+                {
+                    MessageBox.Show("vous devez selectionner une course");
+                }
+            }
 
-            }
-            else
-            {
-                MessageBox.Show("vous devez selectionner une course");
-            }
         }
     }
 }

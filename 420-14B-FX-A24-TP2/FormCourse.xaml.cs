@@ -23,6 +23,9 @@ namespace _420_14B_FX_A24_TP2
     /// </summary>
     public partial class FormCourse : Window
     {
+
+
+
         private List<Coureur> coureur;
         private Course course;
         GestionCourse gestioncourse;
@@ -32,7 +35,9 @@ namespace _420_14B_FX_A24_TP2
             InitializeComponent();
         }
 
-
+        //Tout ce qui concerne la course dans FormCourse avait été attitré à moi, Antoine,
+        //Mais j'ai rencontré trop de difficultés sur le reste du travail vers la date de remise.
+        //À considérer
        
 
         private void AfficherListeCoureur()
@@ -104,7 +109,7 @@ namespace _420_14B_FX_A24_TP2
                 {
                    
                     AfficherListeCoureur();
-                    MessageBox.Show("La personne a ete supprimer");
+                    MessageBox.Show("La personne a ete supprimé");
 
                 }
 
