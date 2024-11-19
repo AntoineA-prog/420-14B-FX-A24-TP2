@@ -9,13 +9,7 @@ namespace _420_14B_FX_A24_TP2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private GestionCourse _gestionCourse;
         
-        public GestionCourse GestionCourse
-        {
-            get { return _gestionCourse; }
-            set { _gestionCourse = value; }
-        }
        
 
         /// <summary>
@@ -32,6 +26,7 @@ namespace _420_14B_FX_A24_TP2
         public MainWindow()
         {
             InitializeComponent();
+            AfficherListeCourses();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -41,12 +36,7 @@ namespace _420_14B_FX_A24_TP2
 
         private void AfficherListeCourses()
         {
-            lstCourses.Items.Clear();
-
-            foreach (Coureur c in courses)
-            {
-                lstCourse.Items.Add(c);
-            }
+            GestionCourse course = new GestionCourse(CHEMIN_FICHIER_COURSE, CHEMIN_FICHIER_COUREURS);
         }
 
         private void btnNouveau_Click(object sender, RoutedEventArgs e)

@@ -36,12 +36,12 @@ namespace _420_14B_FX_A24_TP2
 
         private void AfficherListeCoureur()
         {
-            lstCourse.Items.Clear();
+            //lstCourse.Items.Clear();
 
-            foreach (Coureur c in courses)
-            {
-                lstCourse.Items.Add(c);
-            }
+            //foreach (Coureur c in courses)
+            //{
+            //    lstCourse.Items.Add(c);
+            //}
         }
 
         private void Ajouter_Click(object sender, RoutedEventArgs e)

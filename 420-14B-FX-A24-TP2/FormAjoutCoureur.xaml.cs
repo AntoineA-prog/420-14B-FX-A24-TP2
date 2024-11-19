@@ -141,8 +141,8 @@ namespace _420_14B_FX_A24_TP2
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    Coureur supCoureur = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value,Convert.ToBoolean( cbAbandon));
-                    Course.SupprimerCoureur(supCoureur);
+                    //Coureur supCoureur = new Coureur(ushort.Parse(txtNoDossard.Text), txtNom.Text, txtPrenom.Text, (Categorie)cboCategorie.SelectedIndex, txtVille.Text, (Province)cboProvince.SelectedIndex, (TimeSpan)tsTemps.Value,Convert.ToBoolean( cbAbandon));
+                    //Course.SupprimerCoureur(supCoureur);
 
                     DialogResult = true;
 
